@@ -12,9 +12,12 @@ public class SwiftGallerySaverPlugin: NSObject, FlutterPlugin {
     let albumName = "albumName"
     
     public static func register(with registrar: FlutterPluginRegistrar) {
-        let channel = FlutterMethodChannel(name: "gallery_saver", binaryMessenger: registrar.messenger())
-        let instance = SwiftGallerySaverPlugin()
-        registrar.addMethodCallDelegate(instance, channel: channel)
+       let message:FlutterBinaryMessenger? = registrar.messenger()
+        if  message != nil{
+            let channel = FlutterMethodChannel(name: "gallery_saver", binaryMessenger: registrar.messenger())
+            let instance = SwiftGallerySaverPlugin()
+            registrar.addMethodCallDelegate(instance, channel: channel)
+        }
     }
     
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
